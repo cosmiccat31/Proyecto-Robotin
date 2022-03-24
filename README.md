@@ -1,2 +1,4 @@
-# Taller-2---Robotin
-Entrega taller 2
+# Taller-2  Robotin 🤖
+En este repositorio se presenta 
+## Introducción
+### Primeros pasos
