@@ -20,14 +20,6 @@ Tabla de velocidades maximas
 * Correr rosrun robotin_pkg turtebot_teleop.py
 * Al momento de correrlo, se solicitará si desea guardar el archivo con las trayectorias. Si selecciona "Y" este le solicitará un nombre para el archivo, el cual se guardará en la carpeta "talleres_ws/src/turtle_bot_10/results/", si selecciona "N", no se guardarán las trayectorias. En ambos casos se solicitará la velocidad lineal y angular para TurtleBot.
 
-CONFIGURACIÓN DE TECLADO PARA TURTLEBOT:
-
-                         W   ADELANTE
-               
-   IZQUIERDA <---- A     S     D  ----> DERECHA
-                         |
-                         |
-                       ATRÁS
 ## Punto 2  📈️ GRAFICAR LA TRAYECTORIA QUE RECORRE TURTLEBOOT🐢️ 📈️ 
 
 1. Correr "⌨️ OPERAR EL TURTLEBOT🐢️ MEDIANTE EL TECLADO ⌨️" (El usuario decide si quiere guardar el recorrido o no).
