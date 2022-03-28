@@ -11,13 +11,14 @@ En este repositorio se presenta la implementación de un robot diferencial.
 6. Hacer source devel/setup.bash
 
 NOTA: Todos los nodos se encuentran en el paquete robotin_pkg
-
+## INFORMACION GENERAL DEL ROBOT
+Tabla de velocidades maximas
 
 ## Punto 1  ⌨️ OPERAR EL TURTLEBOT🐢️ MEDIANTE EL TECLADO ⌨️ 
 * Cargar el archivo (teleop_arduino) al arduino 
 * Correr rosrun rosserial_python serial_node.py /dev/ttyACM0
 * Correr rosrun robotin_pkg turtebot_teleop.py
-* Al momento de correrlo, se solicitará si desea guardar el archivo con las trayectorias. Si selecciona "Y" este le solicitará un nombre para el archivo, el cual se guardará en la carpeta "talleres_ws/src/turtle_bot_10/results/", si selecciona "N", no se guardarán las trayectorias. En ambos casos se solicitará la velocidad lineal y angular para TurtleBot (Se recomiendan 70 y 180 respectivamente).
+* Al momento de correrlo, se solicitará si desea guardar el archivo con las trayectorias. Si selecciona "Y" este le solicitará un nombre para el archivo, el cual se guardará en la carpeta "talleres_ws/src/turtle_bot_10/results/", si selecciona "N", no se guardarán las trayectorias. En ambos casos se solicitará la velocidad lineal y angular para TurtleBot.
 
 CONFIGURACIÓN DE TECLADO PARA TURTLEBOT:
 
