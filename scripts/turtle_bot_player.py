@@ -13,14 +13,14 @@ global tw, one, pres, guardar, count, file_name
 
 def browseFiles():
   ftypes = [("Text files", "*.txt"), ("all files", "*.*")]
-  file = filedialog.askopenfilename(initialdir = "./src/turtle_bot_10/results/",title = "Select a File",filetypes = ftypes)
+  file = filedialog.askopenfilename(initialdir = "./src/robotin_pkg/results/",title = "Select a File",filetypes = ftypes)
   return file
 
 # Collect events until released
 def talker():
     global tw, one, pres, guardar, count, file_name
     # Creación del nodo y el topic
-    pub = rospy.Publisher('/turtlebot_cmdVel', Twist, queue_size=10)
+    pub = rospy.Publisher('/robot_cmdVel', Twist, queue_size=10)
     rospy.init_node('turtle_bot_player', anonymous=True)
     rate = rospy.Rate(10)
 
