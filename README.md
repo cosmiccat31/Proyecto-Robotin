@@ -10,7 +10,12 @@ En este repositorio se presenta la implementación de un robot diferencial.
 
 NOTA: Todos los nodos se encuentran en el paquete robotin_pkg
 ## INFORMACION GENERAL DEL ROBOT
-Tabla de velocidades maximas
+# Lista de materiales
+
+* Puente H: https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiszoDG4_X2AhVQTDABHfdMA3kQFnoECAMQAQ&url=https%3A%2F%2Fnaylampmechatronics.com%2Fdrivers%2F11-driver-puente-h-l298n.html&usg=AOvVaw1h8v7_93jsQKV1_FgbscjP
+* Raspberry pi 4: https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiggYXU4_X2AhVsSzABHbPyAPoQFnoECAYQAQ&url=https%3A%2F%2Fstatic.raspberrypi.org%2Ffiles%2Fproduct-briefs%2FRaspberry-Pi-4-Product-Brief.pdf&usg=AOvVaw3kKN1og-Ib_H0iYch2ncAj
+* Arduino uno: https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjQ17Tc4_X2AhUvSTABHbBRCrgQFnoECAIQAQ&url=https%3A%2F%2Fwww.farnell.com%2Fdatasheets%2F1682209.pdf&usg=AOvVaw2hpzYjytzW3E48klQUKjqJ
+* Regulador de voltaje: https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj7ioD44_X2AhWsSjABHbafDoEQFnoECA4QAQ&url=https%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Flm2596&usg=AOvVaw2hyIUL8FdL0D7XjtzvMXII
 
 ## Punto 1  ⌨️ OPERAR EL TURTLEBOT🐢️ MEDIANTE EL TECLADO ⌨️ 
 * Cargar el archivo (teleop_arduino) al arduino 
