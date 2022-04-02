@@ -3,8 +3,6 @@ import rospy
 import threading
 from pynput.keyboard import Key, Listener
 from geometry_msgs.msg import Twist
-
-# from turtle_bot_10.srv import reproduccion, reproduccionResponse
 global tw, one, pres, guardar, count, file_name
 
 
@@ -17,32 +15,32 @@ def handle_reproduccion(req):
 # Collect events until released
 def talker():
     global tw, one, pres, guardar, count, file_name
+    # Creación del nodo y el topic
     pub = rospy.Publisher('/robot_cmdVel', Twist, queue_size=10)
     rospy.init_node('turtle_bot_player', anonymous=True)
-    rate = rospy.Rate(10)  # posible cambio
+    rate = rospy.Rate(10)
 
+    # Ingreso de la trayectoria a seguir
     file_name = input("Nombre del archivo: ")
-    # file_name = rospy.Service('reproduccion', reproduccion,handle_reproduccion)
     file = open("./src/robotin_pkg/results/" + str(file_name) + ".txt", "r")
-    tw = Twist()
-
-    # file = open("./src/turtle_bot_10/results/" + file_name + ".txt", "r")
     Lines = file.readlines()
-
-    # t = threading.Thread(target = teclado)
-    # t.start()
+    tw = Twist()
 
     velocidad = float(Lines[0])
     angulo = float(Lines[1])
 
     print("Por favor no presionar ninguna tecla \n")
     print(velocidad, angulo)
-
+    
+    # Loop principal
     while not rospy.is_shutdown():
         for i in range(2,len(Lines)+1):
             one = Lines[i]
             one = one[0]
             print(one)
+            
+            if i == len(Lines)-1:
+                one = "p"
 
             if one == "w":
                 tw.linear.x = velocidad
@@ -75,8 +73,7 @@ def talker():
                 tw.angular.x = 0
                 tw.angular.y = 0
                 tw.angular.z = 0
-
-            # pres = True
+                
             pub.publish(tw)
             rate.sleep()
 
