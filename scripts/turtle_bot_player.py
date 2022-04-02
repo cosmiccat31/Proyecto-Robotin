@@ -1,35 +1,38 @@
 #!/usr/bin/env python3
-import rospy
-import threading
-from pynput.keyboard import Key, Listener
 from geometry_msgs.msg import Twist
+import rospy
+from tkinter import filedialog
+from tkinter import *
+from pynput.keyboard import Key, Listener
 global tw, one, pres, guardar, count, file_name
 
 
-def handle_reproduccion(req):
-    print("Returning[%s]" % (req.trayectoria))
+# Function for opening the
+# file explorer window
 
-    return req.trayectoria
 
+def browseFiles():
+  ftypes = [("Text files", "*.txt"), ("all files", "*.*")]
+  file = filedialog.askopenfilename(initialdir = "./src/turtle_bot_10/results/",title = "Select a File",filetypes = ftypes)
+  return file
 
 # Collect events until released
 def talker():
     global tw, one, pres, guardar, count, file_name
     # Creación del nodo y el topic
-    pub = rospy.Publisher('/robot_cmdVel', Twist, queue_size=10)
+    pub = rospy.Publisher('/turtlebot_cmdVel', Twist, queue_size=10)
     rospy.init_node('turtle_bot_player', anonymous=True)
     rate = rospy.Rate(10)
 
-    # Ingreso de la trayectoria a seguir
-    file_name = input("Nombre del archivo: ")
-    file = open("./src/robotin_pkg/results/" + str(file_name) + ".txt", "r")
+    file_name = browseFiles()
+    file = open(file_name, "r")
     Lines = file.readlines()
     tw = Twist()
 
     velocidad = float(Lines[0])
     angulo = float(Lines[1])
 
-    print("Por favor no presionar ninguna tecla \n")
+    #print("Por favor no presionar ninguna tecla \n")
     print(velocidad, angulo)
     
     # Loop principal
@@ -84,4 +87,4 @@ if __name__ == '__main__':
     try:
         talker()
     except rospy.ROSInterruptException:
-        pass
+        pass	
