@@ -43,5 +43,4 @@ Se desplegará una interfaz que contendrá una gráfica y un botón. La gráfica
 
 Se solicitará el nombre del archivo de texto .txt donde se contienen las velocidades y la trayectoria. El archivo .txt será buscado en la carpeta "robot_ws/src/robotin_pkg/results/", por lo que previamente deberá ser ubicado en ese directorio. Una vez el usuario escriba el nombre del archivo de texto (SIN .txt), Turtlebot replicará el recorrido allí contenido.
 
-                       
-## Informe
+                      
