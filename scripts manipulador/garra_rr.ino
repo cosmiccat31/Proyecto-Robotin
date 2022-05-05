@@ -10,9 +10,9 @@ int Hombro;
 int Base; 
 int Garra;        //Variable que guarda el valor de la velocidad lineal
 
-int posH=0;
-int posB=0;
-int posG=0;
+int posH=90;
+int posB=80;
+int posG=180;
 
 ros::NodeHandle  nh;
 geometry_msgs::Twist tw_msg;
