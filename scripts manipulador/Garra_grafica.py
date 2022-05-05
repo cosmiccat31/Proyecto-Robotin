@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import tkinter as tk
-#from geometry_msgs.msg import Twist
-#import rospy
+from geometry_msgs.msg import Twist
+import rospy
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
@@ -11,8 +11,9 @@ from tkinter import font as tkFont
 from tkinter import *
 import tkinter.messagebox as messagebox
 from tkinter.filedialog import *
+import threading
 
-figure, ax = plt.subplots()
+fig, ax = plt.subplots()
 
 global x,y,z
 x=[]
@@ -34,6 +35,7 @@ def callback(data):
     z.append(r*np.cos(theta))
 
 def map():
+	
 	mp = animation.FuncAnimation(plt.gcf(), graph, 10000)
 	plt.show()
 
@@ -47,7 +49,7 @@ def grafica():
 
 def graph(i):
     global x,y,z
-    plt.cla()
+    ax.cla()
     ax.plot(x,y,z,'r.')
     ax.set_title('Posición del Robot')
     ax.set_xlabel("x")
@@ -80,7 +82,7 @@ def graph(i):
 # ax.plot(x,y,z,'r.')
 # plt.show()
 
-if __name_ == "__main__":
+if __name__ == "__main__":
     try:
         grafica()
     except rospy.ROSInterruptException: pass
