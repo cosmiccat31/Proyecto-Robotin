@@ -16,7 +16,7 @@ int posG=180;
 
 ros::NodeHandle  nh;
 geometry_msgs::Twist tw_msg;
-
+ros::Publisher Angle("robot_angulo", &tw_msg);
 void messageCb( const geometry_msgs::Twist& robot_pinza){
   Hombro = robot_pinza.linear.x;
   Base = robot_pinza.linear.y;
@@ -73,11 +73,16 @@ void setup()
   Servo2.write(80);
   Servo3.write(180);
   nh.initNode();
+  nh.advertise(Angle);
   nh.subscribe(sub);
 }
 
 void loop()
 {  
+  tw_msg.linear.x = Servo1.read();
+  tw_msg.linear.y = Servo2.read();
+  tw_msg.angular.z = 15;
+  Angle.publish(&tw_msg);
   nh.spinOnce();
   delay(1);
 }
