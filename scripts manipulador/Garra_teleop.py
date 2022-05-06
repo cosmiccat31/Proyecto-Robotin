@@ -35,8 +35,8 @@ def teclado():
 def talker():
     global tw, one, pres, ok,guardar
     pub = rospy.Publisher('/robot_pinza', Twist, queue_size = 10)
-    rospy.init_node('turtle_bot_teleop', anonymous = True)
-    rate = rospy.Rate(10) # posible cambio
+    rospy.init_node('robot_manipulador_teleop', anonymous = True)
+    rate = rospy.Rate(10) 
     
     tw = Twist()
     ok = 2
