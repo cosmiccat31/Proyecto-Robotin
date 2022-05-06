@@ -13,7 +13,7 @@ import tkinter.messagebox as messagebox
 from tkinter.filedialog import *
 import threading
 
-fig, ax = plt.subplots()
+#figure, axis = plt.subplots()
 
 global x,y,z
 x=[]
@@ -29,7 +29,6 @@ def callback(data):
     theta=data.linear.x
     phi=data.linear.y
     r=data.angular.z
-
     x.append(r*np.sin(theta)*np.cos(phi))
     y.append(r*np.sin(theta)*np.sin(phi))
     z.append(r*np.cos(theta))
@@ -41,7 +40,7 @@ def map():
 
 def grafica():
     #Se inicia el nodo
-    rospy.init_node('garra_grafica', anonymous = True)
+    rospy.init_node('robot_manipulador_interface', anonymous = True)
     #Se suscribe al topic turtlebot_position para consegir la posición actual del robot
     rospy.Subscriber('robot_angulo', Twist, callback)
     t = threading.Thread(target = map)
@@ -50,14 +49,14 @@ def grafica():
 def graph(i):
     global x,y,z
     ax.cla()
-    ax.plot(x,y,z,'r.')
+    ax.plot(x,y,z,'r--')
     ax.set_title('Posición del Robot')
     ax.set_xlabel("x")
     ax.set_ylabel("y")
     ax.set_zlabel("z")
     ax.set_xlim(-16, 16)
     ax.set_ylim(-16, 16)
-    ax.set_zlim(-16, 16)
+    ax.set_zlim(-1, 16)
 
 #Se encarga de graficar las posiciones
 # def func_animation(i):
