@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import tkinter as tk
-#from geometry_msgs.msg import Twist
-#import rospy
+from geometry_msgs.msg import Twist
+import rospy
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -66,7 +66,7 @@ class VentanaSeñales(tk.Frame):
         
         #Se encarga de graficar las posiciones
         def func_animation(i):
-             global x,y
+             global x,y,z
              self.ax1.plot(x,y,z)
 	
         if self._anim1 is None:
