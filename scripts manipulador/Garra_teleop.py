@@ -53,13 +53,14 @@ def talker():
     while not rospy.is_shutdown():
 
 
-        # Servo 3  Garra rr
+      #Servo1 homrbo
         if one == "e" and pres == True:
             tw.linear.y = garra       
 
         elif one == "r" and pres == True:
             tw.linear.y = -garra
 
+         # Servo 3  Garra rr
         elif one == "u" and pres == True:
             tw.linear.z = -garra
 
