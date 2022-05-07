@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import tkinter as tk
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import Vector3
 import rospy
 import numpy as np
 import matplotlib.pyplot as plt
@@ -51,23 +51,23 @@ class VentanaSeñales(tk.Frame):
             global x, y, z
 	     # geometria de la garra
 	     # velocidades angulares de las ruedas
-            theta=data.linear.x
-            phi=data.linear.y
-            r=data.angular.z
+            theta=np.radians(data.x)
+            phi=np.radians(data.y)
+            r=data.z
 
             x.append(r*np.sin(theta)*np.cos(phi))
             y.append(r*np.sin(theta)*np.sin(phi))
-            z.append(r*np.cos(theta))
+            z.append(-r*np.cos(theta))
              
         #Se inicia el nodo
         rospy.init_node('robot_manipulador_interface', anonymous = True)
         #Se suscribe al topic turtlebot_position para consegir la posición actual del robot
-        rospy.Subscriber('robot_angulo', Twist, callback)
+        rospy.Subscriber('robot_angulo', Vector3, callback)
         
         #Se encarga de graficar las posiciones
         def func_animation(i):
              global x,y,z
-             self.ax1.plot(x,y,z)
+             self.ax1.plot(x,y,z,'r. ')
 	
         if self._anim1 is None:
         
