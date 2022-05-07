@@ -71,7 +71,7 @@ class VentanaSeñales(tk.Frame):
 	
         if self._anim1 is None:
         
-            self.anim = animation.FuncAnimation(self._figure_1, func_animation, 100)
+            self.anim = animation.FuncAnimation(self.figure1, func_animation, 100)
             self._figure_1_canvas.draw()
          
         else:
