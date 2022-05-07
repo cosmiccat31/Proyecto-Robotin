@@ -22,7 +22,7 @@ class VentanaSeñales(tk.Frame):
         #self._figure_1, self._ax1 = plt.subplots()
         self.figure1 = plt.figure()
         self.ax1 = self.figure1.add_subplot(111, projection='3d')
-        self._figure_1_canvas = FigureCanvasTkAgg(self._figure_1, master=self.frame_graficas)
+        self._figure_1_canvas = FigureCanvasTkAgg(self.figure1, master=self.frame_graficas)
      
         self.frame_graficas.grid_columnconfigure(0, weight=1, uniform="fig")
         self._figure_1_canvas.get_tk_widget().grid(row=0, column=0, padx=(10, 30), pady=(30, 30),sticky="nsew")
@@ -80,13 +80,13 @@ class VentanaSeñales(tk.Frame):
 
     def _init_axes(self):
 
-        self._ax1.set_title('Posición del Robot')
-        self._ax1.set_xlabel("x")
-        self._ax1.set_ylabel("y")
+        self.ax1.set_title('Posición del Robot')
+        self.ax1.set_xlabel("x")
+        self.ax1.set_ylabel("y")
         self.ax1.set_zlabel("z")
-        self._ax1.set_xlim(-16, 16)
-        self._ax1.set_ylim(-16, 16)
-        self._ax1.set_zlim(-1, 16)
+        self.ax1.set_xlim(-16, 16)
+        self.ax1.set_ylim(-16, 16)
+        self.ax1.set_zlim(-1, 16)
 
     
     #Boton guardar grafica
