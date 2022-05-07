@@ -120,10 +120,10 @@ void setup()
 
 void loop()
 {  
-  tw_msg.linear.x = Servo1.read(); //Hombro
-  tw_msg.linear.y = Servo2.read(); //Base
-  tw_msg.angular.z = 15;
-  Angle.publish(&tw_msg);
+  v3_msg.x = Servo1.read(); //Hombro
+  v3_msg.y = Servo2.read(); //Base
+  v3_msg.z = 15;
+  Angle.publish(&v3_msg);
   nh.spinOnce();
   delay(1);
 }
