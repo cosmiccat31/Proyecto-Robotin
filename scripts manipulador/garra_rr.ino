@@ -1,7 +1,7 @@
 #include <Servo.h>
 #include <ros.h>
 #include <geometry_msgs/Twist.h>
-
+#include <geometry_msgs/Vector3.h>
 //------Declaración de los Servos-----
 Servo Servo1; //Hombro            
 Servo Servo2; //Base
@@ -91,7 +91,7 @@ void messageCb( const geometry_msgs::Twist& robot_pinza){
   //Abajo
   if(Hombro<0) { //if Value read of the button ==LOW:
     if (posH>0){
-   posH=posB+5;   //increases the value of the "pos" variable each time the push button of the left is pressed
+   posH=posB-5;   //increases the value of the "pos" variable each time the push button of the left is pressed
     }
     else{
     posH=180;
