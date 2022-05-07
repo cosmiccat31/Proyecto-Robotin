@@ -91,7 +91,7 @@ void messageCb( const geometry_msgs::Twist& robot_pinza){
   //Abajo
   if(Hombro<0) { //if Value read of the button ==LOW:
     if (posH>0){
-   posH=posB-5;   //increases the value of the "pos" variable each time the push button of the left is pressed
+   posH=posH-5;   //increases the value of the "pos" variable each time the push button of the left is pressed
     }
     else{
     posH=0;
@@ -110,7 +110,7 @@ void setup()
   Servo2.attach (9); //Base
   Servo3.attach (3); //Garra rr
   // Posiciones iniciales
-  Servo1.write(90);
+  Servo1.write(0);
   Servo2.write(80);
   Servo3.write(0);
   nh.initNode();
