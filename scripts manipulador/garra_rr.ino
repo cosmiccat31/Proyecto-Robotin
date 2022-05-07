@@ -2,66 +2,107 @@
 #include <ros.h>
 #include <geometry_msgs/Twist.h>
 
+//------Declaración de los Servos-----
 Servo Servo1; //Hombro            
 Servo Servo2; //Base
 Servo Servo3; //Garra 
 
+//-----Declaración de variables-------
+//Variables que reciben las velocidades 
 int Hombro; 
 int Base; 
-int Garra;        //Variable que guarda el valor de la velocidad lineal
-
+int Garra;        
+//Variables de posicion
 int posH=90;
 int posB=80;
 int posG=180;
 
 ros::NodeHandle  nh;
-geometry_msgs::Twist tw_msg;
-ros::Publisher Angle("robot_angulo", &tw_msg);
+geometry_msgs::Twist tw_msg;//Recibe
+geometry_msgs::Vector3 v3_msg;//Envia
+
+//********************PUBLISHER*********************
+ros::Publisher Angle("robot_angulo", &v3_msg);
+
+//*****************FUNCION CALLBACK*********************
 void messageCb( const geometry_msgs::Twist& robot_pinza){
+  
   Hombro = robot_pinza.linear.x;
   Base = robot_pinza.linear.y;
   Garra = robot_pinza.linear.z;
   
  //Abrir
   if(Garra>0){
+     if (posG<180){
+    posG=posG+5;  //increases the value of the "pos" variable each time the push button of the left is pressed
+    }
+    else{
+    posG=180;
+    }
   Servo3.write(180);  
   }
   //Cerrar
   if(Garra<0){
+      if (posG>0){
+    posG=posG-5;  //increases the value of the "pos" variable each time the push button of the left is pressed
+    }
+    else{
+    posG=0;
+    }
   Servo3.write(0);
   }
 
-  //Subir
-  if (Base>0) { //if Value read of the button ==LOW:
-    posB=posB+5;  //increases the value of the "pos" variable each time the push button of the left is pressed
+  //Izquierda
+  if (Base>0) { 
+     if (posB<180){
+   posB=posB+5;   //increases the value of the "pos" variable each time the push button of the left is pressed
+    }
+    else{
+    posB=180;
+    }
     delay(5); //5 milliseconds of delay
     Servo2.write(posB); //servo goes to variable pos
     
   }
-  //Bajar
+  //Derecha
   if(Base<0) { //if Value read of the button ==LOW:
-    posB=posB-5;  //increases the value of the "pos" variable each time the push button of the left is pressed
+    if (posB>0){
+   posB=posB-5;   //increases the value of the "pos" variable each time the push button of the left is pressed
+    }
+    else{
+    posB=0;
+    }
     delay(5); //5 milliseconds of delay
     Servo2.write(posB); //servo goes to variable pos
   }
 
-  //Izquierda
+  //Arriba
   if (Hombro>0) { //if Value read of the button ==LOW:
+    if (posH<180){
     posH=posH+5;  //increases the value of the "pos" variable each time the push button of the left is pressed
+    }
+    else{
+    posH=180;
+    }
     delay(5); //5 milliseconds of delay
     Servo1.write(posH); //servo goes to variable pos
     
   }
-  //Derecha
+  //Abajo
   if(Hombro<0) { //if Value read of the button ==LOW:
-    posH=posH-5;  //increases the value of the "pos" variable each time the push button of the left is pressed
+    if (posH>0){
+   posH=posB+5;   //increases the value of the "pos" variable each time the push button of the left is pressed
+    }
+    else{
+    posH=180;
+    }
     delay(5); //5 milliseconds of delay
     Servo1.write(posH); //servo goes to variable pos
   }
 }
 
 ros::Subscriber<geometry_msgs::Twist> sub("robot_pinza", &messageCb ); //Se suscribe al topic robot_cmdVel para recibir las velocidades
-
+//322 442 0404 // FOOD, SABROSO
 void setup()
 {   
   // Define the servo signal pins
@@ -71,7 +112,7 @@ void setup()
   // Posiciones iniciales
   Servo1.write(90);
   Servo2.write(80);
-  Servo3.write(180);
+  Servo3.write(0);
   nh.initNode();
   nh.advertise(Angle);
   nh.subscribe(sub);
@@ -79,8 +120,8 @@ void setup()
 
 void loop()
 {  
-  tw_msg.linear.x = Servo1.read();
-  tw_msg.linear.y = Servo2.read();
+  tw_msg.linear.x = Servo1.read(); //Hombro
+  tw_msg.linear.y = Servo2.read(); //Base
   tw_msg.angular.z = 15;
   Angle.publish(&tw_msg);
   nh.spinOnce();
