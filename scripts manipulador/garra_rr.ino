@@ -94,7 +94,7 @@ void messageCb( const geometry_msgs::Twist& robot_pinza){
    posH=posB-5;   //increases the value of the "pos" variable each time the push button of the left is pressed
     }
     else{
-    posH=180;
+    posH=0;
     }
     delay(5); //5 milliseconds of delay
     Servo1.write(posH); //servo goes to variable pos
