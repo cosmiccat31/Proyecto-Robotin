@@ -101,7 +101,7 @@ void messageCb( const geometry_msgs::Twist& robot_pinza){
   }
 }
 
-ros::Subscriber<geometry_msgs::Twist> sub("robot_pinza", &messageCb ); //Se suscribe al topic robot_cmdVel para recibir las velocidades
+ros::Subscriber<geometry_msgs::Twist> sub("robot_manipulador_cmdVel", &messageCb ); //Se suscribe al topic robot_cmdVel para recibir las velocidades
 //322 442 0404 // FOOD, SABROSO
 void setup()
 {   
