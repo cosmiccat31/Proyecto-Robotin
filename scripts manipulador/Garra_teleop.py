@@ -34,7 +34,7 @@ def teclado():
 
 def talker():
     global tw, one, pres, ok,guardar
-    pub = rospy.Publisher('/robot_pinza', Twist, queue_size = 10)
+    pub = rospy.Publisher('/robot_manipulador_cmdVel', Twist, queue_size = 10)
     rospy.init_node('robot_manipulador_teleop', anonymous = True)
     rate = rospy.Rate(10) 
     
