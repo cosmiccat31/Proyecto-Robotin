@@ -2,9 +2,8 @@
 import cv2
 import numpy as np
 import serial
-import keyboard
 
-com = serial.Serial("COM11", 9600, write_timeout= 10)
+com = serial.Serial("/dev/ttyACM0", 9600, write_timeout= 10)
 d = 'd'
 i = 'i'
 p = 'p'
@@ -23,8 +22,8 @@ if a=="B" or a=="b":
     azulAlto = np.array([120, 255, 255], np.uint8)
 
 if a=="Y" or a=="y":
-    azulBajo = np.array([20, 100, 20], np.uint8)
-    azulAlto = np.array([40, 255, 255], np.uint8)
+    azulBajo = np.array([15, 100, 20], np.uint8)
+    azulAlto = np.array([30, 255, 255], np.uint8)
 
 while True:
     ret, frame = cap.read()
@@ -70,13 +69,16 @@ while True:
                     # Paramos el servo
                     print("Parar")
                     com.write(p.encode('ascii'))
-
-                elif keyboard.is_pressed("u"):
+                    
+                elif y > centro+50:
+                    # Paramos el servo
                     print("Cerrar")
-                    com.write(u.encode('ascii'))
-                elif keyboard.is_pressed("i"):
+                    com.write(i.encode('ascii'))   
+                    
+                elif y < centro+50:
+                    # Paramos el servo
                     print("Abrir")
-                    com.write(i.encode('ascii'))
+                    com.write(u.encode('ascii'))                                    
 
     cv2.imshow("Camara", frame)
     t = cv2.waitKey(1)
