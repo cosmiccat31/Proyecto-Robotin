@@ -1,64 +1,59 @@
+#include <SoftwareSerial.h>
 #include <Servo.h>
-#include <ros.h>
-#include <geometry_msgs/Twist.h>
 
-Servo Servo1; //Hombro            
-Servo Servo2; //Base
-Servo Servo3; //Garra 
+//Declaramos el servo
+Servo servo;
+Servo servoG;
 
-int Hombro; 
-int Base; 
-int Garra;        
+//Declaramos la variable
+char dato;
+int angulo = 90;
+int anguloG = 180;
 
-ros::NodeHandle  nh;
-geometry_msgs::Twist tw_msg;
-
-void messageCb( const geometry_msgs::Twist& robot_pinza){
-  Hombro = robot_pinza.linear.y;
-  Base = robot_pinza.linear.x;
-  Garra = robot_pinza.linear.z;
-  
- //Abrir garra
-  if(Garra>0){
-  Servo3.write(180);  
-  }
-  
-  //Cerrar garra
-  if(Garra<0){
-  Servo3.write(0);
-  }
-
-  //BASE
-  if (Base>0) { //if Value read of the button ==LOW:
-    Servo2.write(Base); //servo goes to variable pos
-    delay(10); //5 milliseconds of delay    
-  }
-  
-  //HOMBRO
-  if (Hombro>0) { //if Value read of the button ==LOW:
-    Servo1.write(Hombro); //servo goes to variable pos
-    delay(10); //5 milliseconds of delay    
-  }
+void setup() {
+  Serial.begin(9600);
+  Serial.setTimeout(10);
+  servo.attach(9);
+  servo.write(angulo);
+  servoG.attach(3);
+  servoG.write(anguloG);
 }
 
-ros::Subscriber<geometry_msgs::Twist> sub("robot_garra", &messageCb ); //Se suscribe al topic robot_cmdVel para recibir las velocidades
+void loop() {
+  while(Serial.available()){
+    dato = Serial.read();
+    delay(10);
+    Serial.println(dato);
+    switch(dato){
+      case 'd':
+      //Gira servo hacia la derecha
+      angulo = angulo + 1;
+      servo.write(angulo);
+      break;
+      
+      case 'l':
+      //Gira servo hacia la izquierda
+      angulo = angulo - 1;
+      servo.write(angulo);
+      break;
+      
+      case 'p':
+      //Parar el servo
+      angulo = angulo;
+      servo.write(angulo);
+      break;
 
-void setup()
-{   
-  // Define the servo signal pins
-  Servo1.attach (10); //Hombro      
-  Servo2.attach (9); //Base
-  Servo3.attach (3); //Garra rr
-  // Posiciones iniciales
-  Servo1.write(0);
-  Servo2.write(70);
-  Servo3.write(180);
-  nh.initNode();
-  nh.subscribe(sub); //CAR GAR
-}
+      case 'i':
+      //Parar el servo
+      anguloG = 0;
+      servoG.write(anguloG);
+      break;
 
-void loop()
-{  
-  nh.spinOnce();
-  delay(1);
-}
+      case 'u':
+      //Parar el servo
+      anguloG = 180;
+      servoG.write(anguloG);
+      break;
+      }
+   }
+ }
