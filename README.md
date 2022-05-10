@@ -1,4 +1,4 @@
-# Taller-2  Robotin 🤖
+# Taller  Robotin 🤖
 En este repositorio se presenta la implementación de un robot diferencial.
 
 ## Introducción
