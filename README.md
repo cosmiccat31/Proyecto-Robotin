@@ -1,4 +1,4 @@
-# Taller  Robotin 🤖
+# Proyecto final Robotin-Baboni-Chueco 🤖
 En este repositorio se presenta la implementación de un robot diferencial.
 
 ## Introducción
